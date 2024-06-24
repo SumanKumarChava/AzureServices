@@ -35,9 +35,23 @@ namespace AzureBlobProject.Services
             return containers;
         }
 
-        public Task<List<string>> GetContainerAndBlobs()
+        public async Task<List<string>> GetContainerAndBlobs()
         {
-            throw new NotImplementedException();
+            var containersAndBlobs = new List<string>();
+            containersAndBlobs.Add("Blob Container Hierarchy");
+            containersAndBlobs.Add("-----------------------------------");
+            var containers = _blobServiceClient.GetBlobContainersAsync();
+            await foreach(var item in containers)
+            {
+                containersAndBlobs.Add("--" + item.Name);
+                var containerClient = _blobServiceClient.GetBlobContainerClient(item.Name);
+                var blobs = containerClient.GetBlobsAsync();
+                await foreach(var blob in blobs)
+                {
+                    containersAndBlobs.Add("------" + blob.Name);
+                }
+            }
+            return containersAndBlobs;
         }
     }
 }
