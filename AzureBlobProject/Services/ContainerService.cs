@@ -48,7 +48,14 @@ namespace AzureBlobProject.Services
                 var blobs = containerClient.GetBlobsAsync();
                 await foreach(var blob in blobs)
                 {
-                    containersAndBlobs.Add("------" + blob.Name);
+                    var blobClient = containerClient.GetBlobClient(blob.Name);
+                    BlobProperties props = await blobClient.GetPropertiesAsync();
+                    var blobName = blob.Name;
+                    if(props.Metadata != null && props.Metadata.ContainsKey("title"))
+                    {
+                        blobName += " ( "+ props.Metadata["title"] + " ) ";
+                    }
+                    containersAndBlobs.Add("------" + blobName);
                 }
             }
             return containersAndBlobs;
