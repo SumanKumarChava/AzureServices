@@ -1,5 +1,6 @@
 ﻿using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using AzureBlobProject.Models;
 using AzureBlobProject.Services.Interfaces;
 using System.Net.Http.Headers;
 
@@ -15,7 +16,7 @@ namespace AzureBlobProject.Services
             _blobServiceClient = blobServiceClient;
         }
 
-        public async Task<bool> CreateBlobAsync(string containerName, IFormFile blobFile, string blobName)
+        public async Task<bool> CreateBlobAsync(string containerName, IFormFile blobFile, string blobName, Blob blob)
         {
             _containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
             var blobClient = _containerClient.GetBlobClient(blobName);
@@ -23,8 +24,15 @@ namespace AzureBlobProject.Services
             {
                 ContentType = blobFile.ContentType
             };
+            Dictionary<string, string> metadata = new Dictionary<string, string>();
+            metadata["title"] = blob.Title;
+            metadata["comment"] = blob.Comment;
 
-            var result = await blobClient.UploadAsync(blobFile.OpenReadStream(), httpHeaders);
+            var result = await blobClient.UploadAsync(blobFile.OpenReadStream(), httpHeaders, metadata);
+
+            //metadata.Remove("title");
+            //await blobClient.SetMetadataAsync(metadata);
+
             if (result != null)
                 return true;
 

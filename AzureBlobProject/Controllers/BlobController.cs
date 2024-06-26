@@ -1,4 +1,5 @@
-﻿using AzureBlobProject.Services.Interfaces;
+﻿using AzureBlobProject.Models;
+using AzureBlobProject.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AzureBlobProject.Controllers
@@ -23,14 +24,14 @@ namespace AzureBlobProject.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddFile(IFormFile file, string containerName)
+        public async Task<IActionResult> AddFile(IFormFile file, string containerName, Blob blob)
         {
             if(file == null || file.Length < 1)
             {
                 return View();
             }
             var fileName = Path.GetFileNameWithoutExtension(file.FileName) + "_" + Guid.NewGuid() + Path.GetExtension(file.FileName);
-            var result = await _blobService.CreateBlobAsync(containerName, file, fileName);
+            var result = await _blobService.CreateBlobAsync(containerName, file, fileName, blob);
             if(result)
                 return RedirectToAction("Index", "Container");
             return View();
