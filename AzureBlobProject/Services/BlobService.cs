@@ -54,17 +54,17 @@ namespace AzureBlobProject.Services
 
             string sasSignature = "";
             // Generating SAS token at container level
-            if (_containerClient.CanGenerateSasUri)
-            {
-                BlobSasBuilder builder = new BlobSasBuilder
-                {
-                    BlobContainerName = _containerClient.Name,
-                    Resource = "c",
-                    ExpiresOn = DateTimeOffset.UtcNow.AddHours(1)
-                };
-                builder.SetPermissions(BlobAccountSasPermissions.Read);
-                sasSignature = _containerClient.GenerateSasUri(builder).AbsoluteUri.Split("?")[1];
-            }
+            //if (_containerClient.CanGenerateSasUri)
+            //{
+            //    BlobSasBuilder builder = new BlobSasBuilder
+            //    {
+            //        BlobContainerName = _containerClient.Name,
+            //        Resource = "c",
+            //        ExpiresOn = DateTimeOffset.UtcNow.AddHours(1)
+            //    };
+            //    builder.SetPermissions(BlobAccountSasPermissions.Read);
+            //    sasSignature = _containerClient.GenerateSasUri(builder).AbsoluteUri.Split("?")[1];
+            //}
 
             var allBlobs = _containerClient.GetBlobsAsync();
             List<Blob> blobsList = new List<Blob>();
@@ -72,7 +72,7 @@ namespace AzureBlobProject.Services
             {
                 var blob = new Blob();
                 var blobClient = _containerClient.GetBlobClient(item.Name);
-                blob.Uri = blobClient.Uri.AbsoluteUri +"?" + sasSignature;
+                blob.Uri = blobClient.Uri.AbsoluteUri; //+"?" + sasSignature;
 
                 // Generating SAS token at blob level
                 //if(blobClient.CanGenerateSasUri)
