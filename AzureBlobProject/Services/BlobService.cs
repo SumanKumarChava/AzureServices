@@ -1,5 +1,7 @@
 ﻿using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using Azure.Storage.Blobs.Specialized;
+using Azure.Storage.Sas;
 using AzureBlobProject.Models;
 using AzureBlobProject.Services.Interfaces;
 using System.Net.Http.Headers;
@@ -56,6 +58,21 @@ namespace AzureBlobProject.Services
                 var blob = new Blob();
                 var blobClient = _containerClient.GetBlobClient(item.Name);
                 blob.Uri = blobClient.Uri.AbsoluteUri;
+
+                // Generating SAS token at blob level
+                if(blobClient.CanGenerateSasUri)
+                {
+                    BlobSasBuilder builder = new BlobSasBuilder
+                    {
+                        BlobContainerName = blobClient.GetParentBlobContainerClient().Name,
+                        BlobName = blobClient.Name,
+                        Resource = "b",
+                        ExpiresOn = DateTimeOffset.UtcNow.AddHours(1)
+                    };
+                    builder.SetPermissions(BlobAccountSasPermissions.Read);
+                    blob.Uri = blobClient.GenerateSasUri(builder).AbsoluteUri;
+                }
+
                 var blobProperties = await blobClient.GetPropertiesAsync();
                 var metadata = blobProperties.Value.Metadata;
                 if (metadata.ContainsKey("title"))
