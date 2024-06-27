@@ -2,3 +2,5 @@
 /.vs
 /AzureBlobProject/bin
 /AzureBlobProject/obj
+/AzureFunctionsProject/obj
+/AzureFunctionsProject/bin

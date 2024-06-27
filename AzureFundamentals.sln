@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureBlobProject", "AzureBlobProject\AzureBlobProject.csproj", "{0E53E908-52F9-44D1-96DD-F38C39FEA32C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureBlobProject", "AzureBlobProject\AzureBlobProject.csproj", "{0E53E908-52F9-44D1-96DD-F38C39FEA32C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlobExample", "BlobExample", "{25E826F3-7E55-4A14-A6DD-00F9568F8DCD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureFunctionsExample", "AzureFunctionsExample", "{3E677F2D-FE39-4FA4-8652-A388E84FD28D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureFunctionsProject", "AzureFunctionsProject\AzureFunctionsProject.csproj", "{AB2F0FAF-2BA3-49F8-A488-3EC3283A94B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +21,17 @@ Global
 		{0E53E908-52F9-44D1-96DD-F38C39FEA32C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E53E908-52F9-44D1-96DD-F38C39FEA32C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E53E908-52F9-44D1-96DD-F38C39FEA32C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB2F0FAF-2BA3-49F8-A488-3EC3283A94B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB2F0FAF-2BA3-49F8-A488-3EC3283A94B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB2F0FAF-2BA3-49F8-A488-3EC3283A94B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB2F0FAF-2BA3-49F8-A488-3EC3283A94B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0E53E908-52F9-44D1-96DD-F38C39FEA32C} = {25E826F3-7E55-4A14-A6DD-00F9568F8DCD}
+		{AB2F0FAF-2BA3-49F8-A488-3EC3283A94B6} = {3E677F2D-FE39-4FA4-8652-A388E84FD28D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9A59EA9E-9FA4-4EEE-85A9-03115CE70E58}
