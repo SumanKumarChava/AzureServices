@@ -1,0 +1,15 @@
+﻿@model List<Blob>
+
+<div class="container p-4">
+    <div class="row">
+    @foreach(var blob in Model)
+    {
+        <div class="col-4 border p-2 m-2">
+            <img src="@blob.Uri" width="100%"/>
+            <h3>@blob.Title</h3>
+            <p>@blob.Comment</p>
+        </div>
+    }
+    </div>
+</div>
+

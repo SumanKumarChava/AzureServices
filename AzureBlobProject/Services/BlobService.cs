@@ -46,6 +46,31 @@ namespace AzureBlobProject.Services
             await blobClient.DeleteIfExistsAsync();
         }
 
+        public async Task<List<Blob>> GetAllBlobsAlongWithDetailsAsync(string containerName)
+        {
+            _containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
+            var allBlobs = _containerClient.GetBlobsAsync();
+            List<Blob> blobsList = new List<Blob>();
+            await foreach (var item in allBlobs)
+            {
+                var blob = new Blob();
+                var blobClient = _containerClient.GetBlobClient(item.Name);
+                blob.Uri = blobClient.Uri.AbsoluteUri;
+                var blobProperties = await blobClient.GetPropertiesAsync();
+                var metadata = blobProperties.Value.Metadata;
+                if (metadata.ContainsKey("title"))
+                {
+                    blob.Title = metadata["title"];
+                }
+                if (metadata.ContainsKey("comment"))
+                {
+                    blob.Comment = metadata["comment"];
+                }
+                blobsList.Add(blob);
+            }
+            return blobsList;
+        }
+
         public async Task<List<string>> GetAllBlobsAsync(string containerName)
         {
             _containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
