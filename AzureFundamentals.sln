@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureFunctionsExample", "Az
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureFunctionsProject", "AzureFunctionsProject\AzureFunctionsProject.csproj", "{AB2F0FAF-2BA3-49F8-A488-3EC3283A94B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleFuncApp", "SampleFuncApp\SampleFuncApp.csproj", "{782DB220-D974-4650-8F54-53AFC8B568BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{AB2F0FAF-2BA3-49F8-A488-3EC3283A94B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB2F0FAF-2BA3-49F8-A488-3EC3283A94B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB2F0FAF-2BA3-49F8-A488-3EC3283A94B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{782DB220-D974-4650-8F54-53AFC8B568BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{782DB220-D974-4650-8F54-53AFC8B568BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{782DB220-D974-4650-8F54-53AFC8B568BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{782DB220-D974-4650-8F54-53AFC8B568BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{0E53E908-52F9-44D1-96DD-F38C39FEA32C} = {25E826F3-7E55-4A14-A6DD-00F9568F8DCD}
 		{AB2F0FAF-2BA3-49F8-A488-3EC3283A94B6} = {3E677F2D-FE39-4FA4-8652-A388E84FD28D}
+		{782DB220-D974-4650-8F54-53AFC8B568BA} = {3E677F2D-FE39-4FA4-8652-A388E84FD28D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9A59EA9E-9FA4-4EEE-85A9-03115CE70E58}
